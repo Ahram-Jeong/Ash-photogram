@@ -10,8 +10,7 @@
 			<div class="profile-img-wrap story-border"
 				onclick="popup('.modal-image')">
 				<form id="userProfileImageForm">
-					<input type="file" name="profileImageFile" style="display: none;"
-						id="userProfileImageInput" />
+					<input type="file" name="profileImageFile" style="display: none;" id="userProfileImageInput" />
 				</form>
 				<img class="profile-image" src="#"
 					onerror="this.src='/images/person.png'" id="userProfileImage" />

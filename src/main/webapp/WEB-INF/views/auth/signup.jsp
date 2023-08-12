@@ -22,7 +22,7 @@
                         <h1><img src="/images/logo.png" alt=""></h1>
                          <!--로고 end-->
                          <!--회원가입 인풋-->
-                        <form class="login__input" >
+                        <form class="login__input" action="/auth/signup" method="post">
                             <input type="text" name="username" placeholder="아이디" required="required" />
                             <input type="password" name="password" placeholder="비밀번호" required="required" />
                             <input type="email" name="email" placeholder="이메일" required="required" />

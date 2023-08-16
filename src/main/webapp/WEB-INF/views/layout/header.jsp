@@ -1,6 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
+<%-- 인증된 정보에 접근하는 방법 (session에 접근하는 방법) --%>
+<sec:authorize access="isAuthenticated()"> <%-- 인증(로그인) 여부 확인 --%>
+	<sec:authentication property="principal" var="principal"/> <%-- 인증 사용자 정보(principal)를 가져와 변수에 담는다  --%>
+</sec:authorize>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -37,7 +42,7 @@
 						<a href="/image/popular"><i class="far fa-compass"></i></a>
 					</li>
 					<li class="navi-item">
-						<a href="/user/1"><i class="far fa-user"></i></a>
+						<a href="/user/${principal.user.id}"><i class="far fa-user"></i></a>
 					</li>
 				</ul>
 			</nav>

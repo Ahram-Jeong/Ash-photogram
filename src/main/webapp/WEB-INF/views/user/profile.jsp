@@ -20,7 +20,7 @@
 		<!--유저정보 및 사진등록 구독하기-->
 		<div class="profile-right">
 			<div class="name-group">
-				<h2>Ashley_Jeong</h2>
+				<h2>${principal.user.username}</h2>
 				<button class="cta" onclick="location.href='/image/upload'">Posting</button>
 				<button class="cta" onclick="toggleSubscribe(this)">구독하기</button>
 				<button class="modi" onclick="popup('.modal-info')">
@@ -36,8 +36,8 @@
 				</ul>
 			</div>
 			<div class="state">
-				<h4>안녕하세요</h4>
-				<h4>https://github.com/Ahram-Jeong</h4>
+				<h4>${principal.user.bio}</h4>
+				<h4>${principal.user.website}</h4>
 			</div>
 		</div>
 		<!--유저정보 및 사진등록 구독하기-->
@@ -84,7 +84,7 @@
 <!--로그아웃, 회원정보변경 모달-->
 <div class="modal-info" onclick="modalInfo()">
 	<div class="modal">
-		<button onclick="location.href='/user/1/update'">회원정보 변경</button>
+		<button onclick="location.href='/user/${principal.user.id}/update'">회원정보 변경</button>
 		<button onclick="location.href='/logout'">로그아웃</button>
 		<button onclick="closePopup('.modal-info')">취소</button>
 	</div>

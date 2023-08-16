@@ -48,7 +48,7 @@ public class AuthController {
             // User <- SignupDto
             User user = signupDto.toEntity();
             log.info("user = {}", user);
-            User userEntity = authService.join(user);
+            authService.join(user);
             return "redirect:/auth/signin";
         }
     }

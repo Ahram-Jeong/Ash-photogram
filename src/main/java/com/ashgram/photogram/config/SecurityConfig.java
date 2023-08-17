@@ -19,7 +19,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf().disable(); // CSRF 토큰 해제
-        http.authorizeRequests().antMatchers("/", "/user/**", "/image/**", "/subscribe/**", "/comment/**").authenticated() // antMatchers(...)는 인증이 필요함
+        http.authorizeRequests().antMatchers("/", "/user/**", "/image/**", "/subscribe/**", "/comment/**", "/api/**").authenticated() // antMatchers(...)는 인증이 필요함
                 .anyRequest().permitAll() // 그 외의 모든 요청은 허용
                 .and().formLogin().loginPage("/auth/signin") // GET, 인증 할 페이지
                 .loginProcessingUrl("/auth/signin") // POST, login 요청이 들어오면 스프링 시큐리티가 login 프로세스를 진행

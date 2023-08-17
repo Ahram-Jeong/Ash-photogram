@@ -1,5 +1,6 @@
 package com.ashgram.photogram.handler;
 
+import com.ashgram.photogram.handler.ex.CustomApiException;
 import com.ashgram.photogram.handler.ex.CustomValidationApiException;
 import com.ashgram.photogram.handler.ex.CustomValidationException;
 import com.ashgram.photogram.util.Script;
@@ -27,5 +28,10 @@ public class ControllerExceptionHandler {
     @ExceptionHandler(CustomValidationApiException.class)
     public ResponseEntity<?> validationApiException(CustomValidationApiException e) { // HttpStatus 상태코드를 전달하기 위해 ResponseEntity 사용
         return new ResponseEntity<>(new CMRespDto<>(-1, e.getMessage(), e.getErrorMap()), HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(CustomApiException.class)
+    public ResponseEntity<?> apiException(CustomApiException e) { // HttpStatus 상태코드를 전달하기 위해 ResponseEntity 사용
+        return new ResponseEntity<>(new CMRespDto<>(-1, e.getMessage(), null), HttpStatus.BAD_REQUEST);
     }
 }

@@ -1,6 +1,7 @@
 package com.ashgram.photogram.handler;
 
 import com.ashgram.photogram.handler.ex.CustomApiException;
+import com.ashgram.photogram.handler.ex.CustomException;
 import com.ashgram.photogram.handler.ex.CustomValidationApiException;
 import com.ashgram.photogram.handler.ex.CustomValidationException;
 import com.ashgram.photogram.util.Script;
@@ -22,7 +23,16 @@ public class ControllerExceptionHandler {
 
     @ExceptionHandler(CustomValidationException.class)
     public String validationException(CustomValidationException e) {
-        return Script.back(e.getErrorMap().toString());
+        if(e.getErrorMap() == null) {
+            return Script.back(e.getMessage());
+        } else {
+            return Script.back(e.getErrorMap().toString());
+        }
+    }
+
+    @ExceptionHandler(CustomException.class)
+    public String exception(CustomException e) {
+        return Script.back(e.getMessage());
     }
 
     @ExceptionHandler(CustomValidationApiException.class)

@@ -14,14 +14,14 @@
                 </div>
                 <!--사진업로드 로고 end-->
                 <!--사진업로드 Form-->
-                <form class="upload-form" >
+                <form class="upload-form" action="/image" method="post" enctype="multipart/form-data">
                     <input  type="file" name="file"  onchange="imageChoose(this)"/>
                     <div class="upload-img">
                         <img src="/images/person.png" alt="" id="imageUploadPreview" />
                     </div>
                     <!--사진설명 + 업로드버튼-->
                     <div class="upload-form-detail">
-                   		 <input type="text" placeholder="게시글 입력..." name="caption">
+                   		 <input type="text" placeholder="게시글 입력..." name="caption" />
                         <button class="cta blue">Post</button>
                     </div>
                     <!--사진설명 end-->

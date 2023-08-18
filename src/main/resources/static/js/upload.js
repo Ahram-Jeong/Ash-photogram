@@ -11,5 +11,5 @@ function imageChoose(obj) {
 	reader.onload = (e) => {
 		$("#imageUploadPreview").attr("src", e.target.result);
 	}
-	reader.readAsDataURL(f); // 이 코드 실행시 reader.onload 실행됨.
+	reader.readAsDataURL(f); // 이 코드 실행 시, reader.onload 실행
 }

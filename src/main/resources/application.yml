@@ -36,5 +36,5 @@ spring:
       name: test
       password: 1234
 
-#file:
-#  path: C:/src/경로지정/upload/
+file:
+  path: C:/workspace/photogram/upload/

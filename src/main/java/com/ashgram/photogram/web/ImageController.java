@@ -1,10 +1,20 @@
 package com.ashgram.photogram.web;
 
+import com.ashgram.photogram.config.auth.PrincipalDetails;
+import com.ashgram.photogram.handler.ex.CustomValidationException;
+import com.ashgram.photogram.service.ImageService;
+import com.ashgram.photogram.web.dto.image.ImageUploadDto;
+import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
+@RequiredArgsConstructor
 public class ImageController {
+    private final ImageService imageService;
+
     // ******************** 홈, 피드 ********************
     @GetMapping({"/", "/image/story"})
     public String story() {
@@ -21,5 +31,15 @@ public class ImageController {
     @GetMapping("/image/upload")
     public String upload() {
         return "image/upload";
+    }
+
+    @PostMapping("/image")
+    public String imageUpload(ImageUploadDto imageUploadDto, @AuthenticationPrincipal PrincipalDetails principalDetails) {
+        if(imageUploadDto.getFile().isEmpty()) {
+            throw new CustomValidationException("이미지를 첨부하시기 바랍니다.", null);
+        }
+        
+        imageService.picUpload(imageUploadDto, principalDetails);
+        return "redirect:/user/"+ principalDetails.getUser().getId();
     }
 }

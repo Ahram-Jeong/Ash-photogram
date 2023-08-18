@@ -1,5 +1,7 @@
 package com.ashgram.photogram.domain.user;
 
+import com.ashgram.photogram.domain.image.Image;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -7,6 +9,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Builder
 @AllArgsConstructor
@@ -34,6 +37,16 @@ public class User {
     
     private String profileImageUrl; // 프로필 사진
     private String role; // 권한
+
+    /**
+     * 양방향 매핑
+     * 연관관계의 주인이 아닐 경우, mappedBy 사용
+     * FetchType.LAZY -> 지연 로딩 (함수로 호출 시 작동)
+     * FetchType.EAGER -> 즉시 로딩 (join)
+     */
+    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
+    @JsonIgnoreProperties({"user"}) // 무한 참조 방지를 위해 Image 객체 내부의 user를 무시하고 JSON으로 파싱
+    private List<Image> images;
 
     private LocalDateTime createDate;
 

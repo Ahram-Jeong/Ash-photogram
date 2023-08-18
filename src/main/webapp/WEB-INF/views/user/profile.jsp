@@ -3,9 +3,9 @@
 <%@ include file="../layout/header.jsp"%>
 <!--프로필 섹션-->
 <section class="profile">
-	<!--유저정보 컨테이너-->
+	<!--유저 정보 컨테이너-->
 	<div class="profileContainer">
-		<!--유저이미지-->
+		<!--유저 이미지-->
 		<div class="profile-left">
 			<div class="profile-img-wrap story-border"
 				onclick="popup('.modal-image')">
@@ -16,66 +16,60 @@
 					onerror="this.src='/images/person.png'" id="userProfileImage" />
 			</div>
 		</div>
-		<!--유저이미지 end-->
-		<!--유저정보 및 사진등록 구독하기-->
+		<!--유저 이미지 end-->
+		<!--유저 정보 및 사진등록 구독하기-->
 		<div class="profile-right">
 			<div class="name-group">
-				<h2>${principal.user.username}</h2>
-				<button class="cta" onclick="location.href='/image/upload'">Posting</button>
-				<button class="cta" onclick="toggleSubscribe(this)">구독하기</button>
+				<h2>${dto.user.username}</h2>
+
+				<c:choose>
+					<c:when test="${dto.pageOwnerState}">
+						<button class="cta" onclick="location.href='/image/upload'">Posting</button>
+					</c:when>
+					<c:otherwise>
+						<button class="cta" onclick="toggleSubscribe(this)">구독하기</button>
+					</c:otherwise>
+				</c:choose>
+
 				<button class="modi" onclick="popup('.modal-info')">
 					<i class="fas fa-cog"></i>
 				</button>
 			</div>
 			<div class="subscribe">
 				<ul>
-					<li><a href=""> 게시물<span>3</span>
+					<li><a href=""> 게시물<span>${dto.imageCount}</span>
 					</a></li>
 					<li><a href="javascript:subscribeInfoModalOpen();"> 구독정보<span>2</span>
 					</a></li>
 				</ul>
 			</div>
 			<div class="state">
-				<h4>${principal.user.bio}</h4>
-				<h4>${principal.user.website}</h4>
+				<h4>${dto.user.bio}</h4>
+				<h4>${dto.user.website}</h4>
 			</div>
 		</div>
-		<!--유저정보 및 사진등록 구독하기-->
+		<!--유저 정보 및 Posting, 구독하기-->
 	</div>
 </section>
-<!--게시물컨섹션-->
+<!--게시물 컨섹션-->
 <section id="tab-content">
-	<!--게시물컨컨테이너-->
+	<!--게시물 컨테이너-->
 	<div class="profileContainer">
-		<!--그냥 감싸는 div (지우면이미지커짐)-->
+		<!--그냥 감싸는 div (지우면 이미지 커짐)-->
 		<div id="tab-1-content" class="tab-content-item show">
-			<!--게시물컨 그리드배열-->
+			<!--게시물 그리드 배열-->
 			<div class="tab-1-content-inner">
 				<!--아이템들-->
-				<div class="img-box">
-					<a href=""> <img src="/images/test.jpg" />
-					</a>
-					<div class="comment">
-						<a href="#" class=""> <i class="fas fa-heart"></i><span>0</span>
+				<c:forEach var="image" items="${dto.user.images}">
+					<div class="img-box">
+						<a href=""> <img src="/upload/${image.postImageUrl}" />
 						</a>
+						<div class="comment">
+							<a href="#" class=""> <i class="fas fa-heart"></i><span>0</span>
+							</a>
+						</div>
 					</div>
-				</div>
-				<div class="img-box">
-					<a href=""> <img src="/images/test.jpg" />
-					</a>
-					<div class="comment">
-						<a href="#" class=""> <i class="fas fa-heart"></i><span>0</span>
-						</a>
-					</div>
-				</div>
-				<div class="img-box">
-					<a href=""> <img src="/images/test.jpg" />
-					</a>
-					<div class="comment">
-						<a href="#" class=""> <i class="fas fa-heart"></i><span>0</span>
-						</a>
-					</div>
-				</div>
+				</c:forEach>
 				<!--아이템들 end-->
 			</div>
 		</div>
@@ -90,7 +84,7 @@
 	</div>
 </div>
 <!--로그아웃, 회원정보변경 모달 end-->
-<!--프로필사진 바꾸기 모달-->
+<!--프로필 사진 바꾸기 모달-->
 <div class="modal-image" onclick="modalImage()">
 	<div class="modal">
 		<p>프로필 사진 변경</p>
@@ -98,7 +92,7 @@
 		<button onclick="closePopup('.modal-image')">취소</button>
 	</div>
 </div>
-<!--프로필사진 바꾸기 모달 end-->
+<!--프로필 사진 바꾸기 모달 end-->
 <div class="modal-subscribe">
 	<div class="subscribe">
 		<div class="subscribe-header">

@@ -7,7 +7,6 @@ import com.ashgram.photogram.service.UserService;
 import com.ashgram.photogram.web.dto.CMRespDto;
 import com.ashgram.photogram.web.dto.user.UserUpdateDto;
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
@@ -21,7 +20,6 @@ import java.util.Map;
 
 @RestController
 @RequiredArgsConstructor
-@Slf4j
 public class UserApiController {
     private final UserService userService;
 
@@ -39,7 +37,7 @@ public class UserApiController {
         } else {
             User userEntity = userService.modify(id, userUpdateDto.toEntity());
             principalDetails.setUser(userEntity); // modify() 후, 세션 정보 변경
-            return new CMRespDto<>(1, "회원 정보 수정 완료", userEntity);
+            return new CMRespDto<>(1, "회원 정보 수정 완료", userEntity); // 응답 시, userEntity의 모든 getter 함수가 호출 되고, JSON으로 파싱하여 응답
         }
     }
 }

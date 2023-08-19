@@ -14,4 +14,7 @@ public class UserProfileDto {
     private boolean pageOwnerState;
     private int imageCount;
     private User user;
+    // 구독 정보 추가
+    private boolean subscribeState;
+    private long subscribeCount;
 }

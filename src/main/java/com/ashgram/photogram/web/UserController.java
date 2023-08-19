@@ -1,7 +1,6 @@
 package com.ashgram.photogram.web;
 
 import com.ashgram.photogram.config.auth.PrincipalDetails;
-import com.ashgram.photogram.domain.user.User;
 import com.ashgram.photogram.service.UserService;
 import com.ashgram.photogram.web.dto.user.UserProfileDto;
 import lombok.RequiredArgsConstructor;

@@ -1,5 +1,6 @@
 package com.ashgram.photogram.service;
 
+import com.ashgram.photogram.domain.subscribe.SubscribeRepository;
 import com.ashgram.photogram.domain.user.User;
 import com.ashgram.photogram.domain.user.UserRepository;
 import com.ashgram.photogram.handler.ex.CustomException;
@@ -14,6 +15,7 @@ import org.springframework.transaction.annotation.Transactional;
 @RequiredArgsConstructor
 public class UserService {
     private final UserRepository userRepository;
+    private final SubscribeRepository subscribeRepository;
     private final BCryptPasswordEncoder bCryptPasswordEncoder;
 
     // ******************** 프로필 ********************
@@ -28,6 +30,12 @@ public class UserService {
         userProfileDto.setUser(userEntity);
         userProfileDto.setPageOwnerState(pageUserId == principalId); // true or false
         userProfileDto.setImageCount(userEntity.getImages().size());
+        // 구독 정보 추가
+        int subscribeState = subscribeRepository.mSubscribeState(pageUserId, principalId);
+        long subscribeCount = subscribeRepository.mSubscribeCount(pageUserId);
+        userProfileDto.setSubscribeState(subscribeState == 1);
+        userProfileDto.setSubscribeCount(subscribeCount);
+
         return userProfileDto;
     }
 

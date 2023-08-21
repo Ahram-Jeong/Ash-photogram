@@ -50,8 +50,8 @@ public class UserApiController {
 
     // ******************** 구독 정보 ********************
     @GetMapping("/api/user/{pageUserId}/subscribe")
-    public ResponseEntity<?> subscribeList(@PathVariable long pageUserId, @AuthenticationPrincipal PrincipalDetails principalDetails) {
-        List<SubscribeDto> subscribeDto = subscribeService.subList(pageUserId, principalDetails.getUser().getId());
+    public ResponseEntity<?> subscribeList(@AuthenticationPrincipal PrincipalDetails principalDetails, @PathVariable long pageUserId) {
+        List<SubscribeDto> subscribeDto = subscribeService.subList(principalDetails.getUser().getId(), pageUserId);
         return new ResponseEntity<>(new CMRespDto<>(1, "subscribeList 불러오기 성공", subscribeDto), HttpStatus.OK);
     }
 }

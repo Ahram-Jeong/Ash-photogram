@@ -68,7 +68,7 @@ function getSubscribeModalItem(u) {
 		<div class="subscribe__btn">`;
 
 		if(!u.equalUserState) { // 로그인 user != 현재 페이지 user
-			if(u.subscribeState) { // 구독한 상태
+			if(u.subscribeState) { // 구독여부
 				item += `<button class="cta" onClick="toggleSubscribe(${u.id}, this)">구독취소</button>`;
 			} else {
 				item += `<button class="cta blue" onClick="toggleSubscribe(${u.id}, this)">구독하기</button>`;

@@ -24,7 +24,7 @@ public class Image { // N, 1
 
     @ManyToOne // -> 연관관계 주인
     @JoinColumn(name = "userId")
-    @JsonIgnoreProperties({"images"}) // 무한 참조 방지를 위해 User 객체 내부의 images를 무시하고 JSON으로 파싱
+    @JsonIgnoreProperties({"images"}) // 포토그램 피드에서 이미지 select 시, 무한 참조 방지를 위해 User 객체 내부의 images를 무시하고 JSON으로 파싱
     private User user; // 1, 1
 
     private LocalDateTime createDate;

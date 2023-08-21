@@ -7,6 +7,8 @@ import com.ashgram.photogram.web.dto.image.ImageUploadDto;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -43,5 +45,11 @@ public class ImageService {
         Image image = imageUploadDto.toEntity(imageFileName, principalDetails.getUser());
         imageRepository.save(image);
 //        log.info("imageEntity = {}", imageEntity); // [imageEntity를 출력]하는 과정에서 Image객체 안의 User가 무한 참조되는 현상이 발생하여, Image 객체의 toString()에 user를 빼줘야 한다.
+    }
+
+    // ******************** 포토그램 피드 ********************
+    @Transactional(readOnly = true)
+    public Page<Image> imageFeed(long principalId, Pageable pageable) {
+        return imageRepository.mFeed(principalId, pageable);
     }
 }

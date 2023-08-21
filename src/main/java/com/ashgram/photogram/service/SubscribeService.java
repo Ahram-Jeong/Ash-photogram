@@ -36,7 +36,7 @@ public class SubscribeService {
 
     // ******************** 구독 정보 ********************
     @Transactional(readOnly = true)
-    public List<SubscribeDto> subList(long pageUserId, long id) {
+    public List<SubscribeDto> subList(long id, long pageUserId) {
         // 쿼리 준비
         StringBuffer sb = new StringBuffer();
         sb.append("SELECT u.id, u.username, u.profileImageUrl, ");

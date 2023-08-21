@@ -23,7 +23,6 @@ public class AuthService {
         // 권한 부여
         user.setRole("ROLE_USER"); // 관리자 : ROLE_ADMIN
 
-        User userEntity = userRepository.save(user);
-        return userEntity;
+        return userRepository.save(user);
     }
 }

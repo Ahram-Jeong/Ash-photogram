@@ -50,6 +50,18 @@ public class ImageService {
     // ******************** 포토그램 피드 ********************
     @Transactional(readOnly = true)
     public Page<Image> imageFeed(long principalId, Pageable pageable) {
-        return imageRepository.mFeed(principalId, pageable);
+        Page<Image> images = imageRepository.mFeed(principalId, pageable);
+
+        // 좋아요 상태 담기
+        images.forEach((image) -> { // 피드 이미지들을 뽑아서
+            image.setLikeCount(image.getLikes().size());
+            image.getLikes().forEach((like) -> { // 각 Image 객체 안의 좋아요 리스트를 돌렸을 때
+                if(like.getUser().getId() == principalId) { // 좋아요 한 유저와 로그인 유저가 같은 경우
+                    image.setLikeState(true);
+                }
+            });
+        });
+
+        return images;
     }
 }

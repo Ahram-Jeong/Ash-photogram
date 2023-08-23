@@ -15,6 +15,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.List;
 import java.util.UUID;
 
 @Service
@@ -63,5 +64,11 @@ public class ImageService {
         });
 
         return images;
+    }
+
+    // ******************** 인기글 ********************
+    @Transactional(readOnly = true)
+    public List<Image> popularPic() {
+        return imageRepository.mPopular();
     }
 }

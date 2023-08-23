@@ -55,7 +55,8 @@ public class ImageService {
 
         // 좋아요 상태 담기
         images.forEach((image) -> { // 피드 이미지들을 뽑아서
-            image.setLikeCount(image.getLikes().size());
+            image.setLikeCount(image.getLikes().size()); // likeCount : DB에는 없지만, .getLikes().size()를 통해 service 단에서 강제로 만들어 준 것
+
             image.getLikes().forEach((like) -> { // 각 Image 객체 안의 좋아요 리스트를 돌렸을 때
                 if(like.getUser().getId() == principalId) { // 좋아요 한 유저와 로그인 유저가 같은 경우
                     image.setLikeState(true);

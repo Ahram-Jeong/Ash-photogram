@@ -1,5 +1,6 @@
 package com.ashgram.photogram.domain.image;
 
+import com.ashgram.photogram.domain.comment.Comment;
 import com.ashgram.photogram.domain.likes.Likes;
 import com.ashgram.photogram.domain.user.User;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
@@ -37,6 +38,12 @@ public class Image { // N, 1
     private boolean likeState;
     @Transient
     private long likeCount;
+
+    // 댓글 기능
+    @OneToMany(mappedBy = "image") // 하나의 이미지에 여러 개의 댓글
+    @OrderBy("id DESC")
+    @JsonIgnoreProperties({"image"})
+    private List<Comment> comments;
 
     private LocalDateTime createDate;
 

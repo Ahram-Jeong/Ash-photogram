@@ -85,7 +85,7 @@ function getSubscribeModalItem(u) {
 // (3) 유저 프로파일 사진 변경 (완)
 function profileImageUpload(pageUserId, principalId) {
 	if(pageUserId != principalId) {
-		alert("해당 유저만 업로드 가능합니다.");
+		alert("해당 사용자만 업로드 가능합니다.");
 		return;
 	}
 

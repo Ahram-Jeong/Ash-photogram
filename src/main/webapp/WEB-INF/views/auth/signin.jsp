@@ -36,9 +36,8 @@
                         <!-- 또는 end -->
                         <!-- Oauth 소셜로그인 -->
                         <div class="login__facebook">
-                            <button>
-                                <i class="fab fa-facebook-square"></i>
-                                <span>Facebook으로 로그인</span>
+                            <button onclick="location.href='/oauth2/authorization/naver'">
+                                <img src="/images/loginButton.png" style="height:30px;">
                             </button>
                         </div>
                         <!-- Oauth 소셜로그인 end -->

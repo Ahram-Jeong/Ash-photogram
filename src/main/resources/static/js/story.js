@@ -206,14 +206,17 @@ function addComment(imageId) {
 
 // (5) 댓글 삭제
 function deleteComment(commentId) {
-    $.ajax({
-        type: "delete",
-        url: `/api/comment/${commentId}`,
-        dataType: "json"
-    }).done(res => {
-        console.log("댓글 삭제 성공", res);
-        $(`#storyCommentItem-${commentId}`).remove();
-    }).fail(error => {
-        console.log("댓글 삭제 실패", error);
-    });
+    if(confirm("댓글을 삭제하시겠습니까?")) {
+        $.ajax({
+            type: "delete",
+            url: `/api/comment/${commentId}`,
+            dataType: "json"
+        }).done(res => {
+            console.log("댓글 삭제 성공", res);
+            alert("삭제되었습니다.");
+            $(`#storyCommentItem-${commentId}`).remove();
+        }).fail(error => {
+            console.log("댓글 삭제 실패", error);
+        });
+    }
 }

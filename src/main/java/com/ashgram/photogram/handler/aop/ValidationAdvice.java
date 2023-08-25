@@ -15,7 +15,7 @@ import java.util.Map;
 @Aspect
 @Component
 public class ValidationAdvice {
-    // web.api AOP
+    // web.api.*Controller 유효성 검사 AOP
     @Around("execution(* com.ashgram.photogram.web.api.*Controller.*(..))")
     public Object apiAdvice(ProceedingJoinPoint proceedingJoinPoint) throws Throwable {
         // Controller의 메소드들 보다 먼저 실행
@@ -39,7 +39,7 @@ public class ValidationAdvice {
         return proceedingJoinPoint.proceed(); // Controller의 메소드 실행
     }
 
-    // web AOP
+    //  web.*Controller 유효성 검사 AOP
     @Around("execution(* com.ashgram.photogram.web.*Controller.*(..))")
     public Object advice(ProceedingJoinPoint proceedingJoinPoint) throws Throwable {
         Object[] args = proceedingJoinPoint.getArgs();

@@ -28,8 +28,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .and().formLogin().loginPage("/auth/signin") // GET, 인증 할 페이지
                 .loginProcessingUrl("/auth/signin") // POST, login 요청이 들어오면 스프링 시큐리티가 login 프로세스를 진행
                 .defaultSuccessUrl("/")
-                .and().oauth2Login() // formLogin에 oauth2Login도 추가
-                .userInfoEndpoint() // oauth2Login 이후 최종 응답을 회원 정보로 바로 받음
+                .and().oauth2Login() // formLogin + oauth2Login도 추가
+                .userInfoEndpoint() // oauth2Login 이후 최종 응답을 회원 정보로 받음
                 .userService(oAuth2DetailsService);
     }
 }

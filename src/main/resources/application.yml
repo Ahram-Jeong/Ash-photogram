@@ -15,8 +15,8 @@ spring:
   datasource:
     driver-class-name: org.mariadb.jdbc.Driver
     url: jdbc:mariadb://localhost:3306/photogram?serverTimezone=Asia/Seoul&allowPublicKeyRetrieval=true&useSSL=false
-    username: cos
-    password: cos1234
+    username: ash
+    password: ash1234
 
   jpa:
     open-in-view: true
